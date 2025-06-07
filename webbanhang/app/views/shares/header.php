@@ -80,8 +80,25 @@
     <li><a href="/webbanhang/Product/index"><i class="material-icons left">shopping_bag</i>Sản phẩm</a></li>
     <li><a href="/webbanhang/Category/list"><i class="material-icons left">category</i>Danh mục</a></li>
     <li><div class="divider"></div></li>
-    <li><a href="#"><i class="material-icons left">search</i>Tìm kiếm</a></li>
-    <li><a href="#"><i class="material-icons left">account_circle</i>Tài khoản</a></li>
+    <li class ="nav-item"> 
+      <?php
+      if(SessionHelper::isLogdedIn()){
+        echo "<a class='nav-link'?>".$_SESSION['username']."</a.>";
+      } else{
+        echo "<a class='nav-link' href='/webbanhang/account/login'><i class="material-icons left">account_circle</i>Tài khoản</a>";
+      }
+      ?>
+    </li>
+      <li class="nav-item=">
+        <a>
+          <?php
+            if(SessionHelpher::isloggedIn()){
+              echo "<a class ='nav-link'
+              href='/webbanhang/account/logout</a>";
+            }
+          ?>
+        </a>
+      </li>
   </ul>
 
   <main>
