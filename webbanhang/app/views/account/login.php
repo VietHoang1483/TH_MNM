@@ -1,54 +1,96 @@
 <?php include 'app/views/shares/header.php'; ?>
 
-<section class="vh-100 gradient-custom">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                    <div class="card-body p-5 text-center">
+<style>
+    body {
+        background: #f4f6f9;
+    }
 
-                        <form action="/webbanhang/account/checklogin" method="post">
+    .login-container {
+        min-height: 100vh;
+    }
 
-                            <div class="mb-md-5 mt-md-4 pb-5">
-                                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                                <p class="text-white-50 mb-5">Please enter your login and password!</p>
+    .card-login {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
 
-                                <div class="form-outline form-white mb-4">
-                                    <input type="text" name="username" class="form-control form-control-lg" />
-                                    <label class="form-label" for="typeEmailX">UserName</label>
-                                </div>
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #4a90e2;
+    }
 
-                                <div class="form-outline form-white mb-4">
-                                    <input type="password" name="password" class="form-control form-control-lg" />
-                                    <label class="form-label" for="typePasswordX">Password</label>
-                                </div>
+    .btn-login {
+        background-color: #4a90e2;
+        border: none;
+    }
 
-                                <p class="small mb-5 pb-lg-2">
-                                    <a class="text-white-50" href="#!">Forgot password?</a>
-                                </p>
+    .btn-login:hover {
+        background-color: #357ABD;
+    }
 
-                                <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+    .social-icons a {
+        color: #4a90e2;
+        margin: 0 10px;
+        font-size: 1.2rem;
+        transition: 0.3s;
+    }
 
-                                <div class="d-flex justify-content-center text-center mt-4 pt-1">
-                                    <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
-                                    <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
-                                    <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
-                                </div>
-                            </div>
+    .social-icons a:hover {
+        color: #1c5d99;
+    }
 
-                            <div>
-                                <p class="mb-0">Don't have an account?
-                                    <a href="/webbanhang/account/register" class="text-white-50 fw-bold">Sign Up</a>
-                                </p>
-                            </div>
+    .card-title {
+        color: #333;
+    }
 
-                        </form>
+    .text-muted-custom {
+        color: #777;
+    }
+</style>
 
+<div class="container login-container d-flex align-items-center justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card card-login p-4">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-4">Welcome Back 👋</h3>
+                <p class="text-muted-custom text-center mb-4">Please enter your username and password to continue.</p>
+
+                <form action="/webbanhang/account/checklogin" method="post">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" name="username" class="form-control" id="username" required>
                     </div>
-                </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" id="password" required>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <a href="#!" class="small text-muted-custom">Forgot password?</a>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-login btn-lg text-white">Login</button>
+                    </div>
+
+                    <div class="social-icons text-center mt-4">
+                        <span>Or sign in with:</span><br>
+                        <a href="#!"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#!"><i class="fab fa-twitter"></i></a>
+                        <a href="#!"><i class="fab fa-google"></i></a>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <p class="mb-0">Don't have an account?
+                            <a href="/webbanhang/account/register" class="text-primary fw-semibold">Sign Up</a>
+                        </p>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</section>
+</div>
 
 <?php include 'app/views/shares/footer.php'; ?>

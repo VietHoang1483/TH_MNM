@@ -79,8 +79,8 @@ class AccountController {
 
                 if (password_verify($password, $pwd_hashed)) {
                     session_start();
-                    $_SESSION['user_id'] = $account->id;
-                    $_SESSION['user_role'] = $account->role;
+                    //$_SESSION['user_id'] = $account->id;
+                    //$_SESSION['user_role'] = $account->role;
                     $_SESSION['username'] = $account->username;
 
                     header('Location: /webbanhang/product');

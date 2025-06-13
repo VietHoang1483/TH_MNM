@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <style>
     body {
-      background-color: #bb86fc;
+      background-color:rgb(41, 172, 215);
       color: #e0e0e0;
       display: flex;
       min-height: 100vh;
@@ -19,7 +19,7 @@
     }
     
     .page-header {
-      color: #bb86fc;
+      color:rgb(40, 15, 70);
       font-weight: 500;
       text-align: center;
       margin-bottom: 2rem;
@@ -64,7 +64,7 @@
     }
     
     table.striped>tbody>tr:nth-child(odd) {
-      background-color: #bb86fc;
+      background-color:rgb(36, 10, 67);
     }
     
     table.striped>tbody>tr:hover {
@@ -72,8 +72,8 @@
     }
     
     th {
-      background-color: #252525 !important;
-      color: #bb86fc !important;
+      background-color:rgb(133, 228, 242) !important;
+      color:rgb(0, 0, 0) !important;
       font-weight: 500;
     }
     
@@ -82,7 +82,7 @@
     }
     
     .empty-state {
-      background-color: #1e1e1e;
+      background-color:rgb(127, 126, 126);
       padding: 2rem;
       border-radius: 8px;
       text-align: center;

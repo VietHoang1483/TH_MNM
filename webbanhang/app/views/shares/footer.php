@@ -38,7 +38,7 @@
 
   <main>
     <div class="container">
-      <h1 class="center-align">Chào mừng đến với TH-Shop</h1>
+      <h1 class="center-align">Chào mừng đến với Scam Shop</h1>
       <p class="center-align">Trang web bán sản phẩm chất lượng thấp với giá cả trên trời.</p>
     </div>
   </main>
@@ -75,7 +75,7 @@
     </div>
     <div class="footer-copyright">
       <div class="container center-align">
-        &copy; 2025 TH-Shop. All rights reserved.
+        &copy; 2025 Shop. All rights reserved.
       </div>
     </div>
   </footer>

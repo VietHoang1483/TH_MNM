@@ -1,13 +1,13 @@
 <?php 
 class AccountModel{
     private $conn;
-    private $table_name = "account";
+    private $table_name = "users";
     public function __construct($db){
         $this->conn = $db;
     }
     public function getAccountByUsername($username)
     {
-        $query ="SELECT * FROM account WHERE username =:username";
+        $query ="SELECT * FROM users WHERE username =:username";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
         $stmt->execute();

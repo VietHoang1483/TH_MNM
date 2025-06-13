@@ -1,155 +1,125 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php include 'app/views/shares/header.php'; ?>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Danh sách sản phẩm</title>
-  <!-- Materialize CSS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
-  <!-- Material Icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-  <style>
-    body {
-      background-color:rgb(24, 23, 23);
-      color: #e0e0e0;
+<style>
+    .product-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: flex-start;
     }
 
-    h4 {
-      font-weight: 600;
+    /* Mỗi thẻ sản phẩm */
+    .product-card-wrapper {
+        flex: 0 0 calc((100% - 60px) / 4); /* 4 thẻ mỗi hàng với 3 khoảng cách x 20px */
+        min-width: 250px;
     }
 
-    .card,
-    .card-panel {
-      background-color:rgb(117, 115, 115);
-      border-radius: 10px;
+    .product-card {
+        transition: all 0.3s ease;
+        border-radius: 10px;
+        text-decoration: none !important;
+        color: inherit;
+        display: block;
+        width: 100%;
     }
 
-    table.highlight > tbody > tr:hover {
-      background-color: rgba(255, 255, 255, 0.05);
+    .product-card:hover {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        border: 1px solid #007bff;
     }
 
-    thead {
-      background-color: #2c2c2c;
+    .card-img-top {
+        object-fit: cover;
+        height: 200px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
     }
 
-    thead th {
-      color: #ffffff;
+    .card-body {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
     }
 
-    td,
-    th {
-      color:rgb(36, 35, 35);
+    .card-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
     }
 
-    table img {
-      height: 60px;
-      object-fit: cover;
-      border-radius: 4px;
+    .card-text {
+        font-size: 0.95rem;
     }
 
-    .material-icons.grey-text {
-      font-size: 32px;
+    .btn-sm:hover {
+        opacity: 0.9;
+        transform: scale(1.03);
     }
 
-    .btn,
-    .btn-small {
-      color: #fff;
+    .btn-warning:hover {
+        background-color: #e0a800;
+        border-color: #d39e00;
     }
-  </style>
-</head>
 
-<body class="grey darken-4">
-  <?php include 'app/views/shares/header.php'; ?>
+    .btn-danger:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
+    }
 
-  <div class="container">
-    <div class="row valign-wrapper" style="margin-bottom: 32px;">
-      <div class="col s12 m4 center-align">
-        <h4 class="blue-text text-lighten-2">Danh sách sản phẩm</h4>
-      </div>
-      <div class="col s12 m8 right-align">
-        <a href="/webbanhang/Product/add" class="btn waves-effect waves-light blue darken-2">
-          <i class="material-icons left">add</i> Thêm sản phẩm
-        </a>
-      </div>
+    /* Responsive breakpoints */
+    @media (max-width: 1200px) {
+        .product-card-wrapper {
+            flex: 0 0 calc((100% - 40px) / 3); /* 3 thẻ mỗi hàng */
+        }
+    }
+
+    @media (max-width: 768px) {
+        .product-card-wrapper {
+            flex: 0 0 calc((100% - 20px) / 2); /* 2 thẻ mỗi hàng */
+        }
+    }
+
+    @media (max-width: 576px) {
+        .product-card-wrapper {
+            flex: 0 0 100%; /* 1 thẻ mỗi hàng */
+        }
+    }
+</style>
+
+<h1 class="mb-4">Danh sách sản phẩm</h1>
+<a href="/webbanhang/Product/add" class="btn btn-success mb-4">Thêm sản phẩm mới</a>
+
+<!-- Sử dụng container-fluid để mở rộng vùng hiển thị -->
+<div class="container-fluid px-4">
+    <div class="product-list">
+        <?php foreach ($products as $product): ?>
+            <div class="product-card-wrapper">
+                <a href="/webbanhang/Product/show/<?php echo $product->id; ?>" class="product-card">
+                    <div class="card h-100 shadow-sm">
+                        <?php if ($product->image): ?>
+                            <img src="/webbanhang/<?php echo $product->image; ?>" class="card-img-top" alt="Product Image">
+                        <?php endif; ?>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <?php echo htmlspecialchars($product->name, ENT_QUOTES, 'UTF-8'); ?>
+                            </h5>
+                            <p class="card-text text-truncate" title="<?php echo htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8'); ?>">
+                                <?php echo htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8'); ?>
+                            </p>
+                            <p class="mb-1"><strong>Giá:</strong> <?php echo htmlspecialchars($product->price, ENT_QUOTES, 'UTF-8'); ?> VND</p>
+                            <p class="mb-3"><strong>Danh mục:</strong> <?php echo htmlspecialchars($product->category_name, ENT_QUOTES, 'UTF-8'); ?></p>
+                            <div class="mt-auto d-flex justify-content-between">
+                                <a href ="/webbanhang/Product/addToCart/ <?php echo $product->id; ?>" class="btn btn-primary" >Thêm giỏ hàng</a>
+                                <a href="/webbanhang/Product/edit/<?php echo $product->id; ?>" class="btn btn-warning btn-sm" onclick="event.stopPropagation();">Sửa</a>
+                                <a href="/webbanhang/Product/delete/<?php echo $product->id; ?>" class="btn btn-danger btn-sm" onclick="event.stopPropagation(); return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">Xóa</a>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        <?php endforeach; ?>
     </div>
+</div>
 
-    <?php if (empty($products)): ?>
-      <div class="card-panel center-align">
-        <i class="material-icons large grey-text text-lighten-2">inbox</i>
-        <h5 class="text-black">Không có sản phẩm nào</h5>
-        <p class="text-black">Hãy thêm sản phẩm mới để bắt đầu</p>
-      </div>
-    <?php else: ?>
-      <div class="card">
-        <table class="highlight responsive-table">
-          <thead>
-            <tr>
-              <th>Tên sản phẩm</th>
-              <th>Hình ảnh</th>
-              <th>Danh mục</th>
-              <th>Mô tả</th>
-              <th>Giá</th>
-              <th>Hành động</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php foreach ($products as $product): ?>
-              <tr>
-                <td>
-                  <a href="/webbanhang/Product/show/<?php echo $product->id; ?>" class="blue-text text-lighten-2">
-                    <?php echo htmlspecialchars($product->name, ENT_QUOTES, 'UTF-8'); ?>
-                  </a>
-                </td>
-                <td>
-                <?php if ($product->image): ?>
-                    <img src="/webbanhang/<?php echo $product->image; ?>" alt="Product
-                    Image" style="max-width: 100px;">
-                    <?php endif; ?>
-                </td>
-                <td>
-                  <?php echo htmlspecialchars($product->category_name ?? 'Chưa có danh mục', ENT_QUOTES, 'UTF-8'); ?>
-                </td>
-                <td>
-                  <?php
-                    $description = htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8');
-                    echo strlen($description) > 100 ? substr($description, 0, 100) . '...' : $description;
-                  ?>
-                </td>
-                <td><?php echo number_format($product->price, 0, ',', '.'); ?> VND</td>
-                <td>
-                  <a href="/webbanhang/Product/edit/<?php echo $product->id; ?>" 
-                     class="btn-small yellow darken-2 waves-effect waves-light tooltipped" data-tooltip="Sửa">
-                    <i >sửa</i>
-                  </a>
-                  <a href="/webbanhang/Product/delete/<?php echo $product->id; ?>" 
-                     onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');" 
-                     class="btn-small red darken-2 waves-effect waves-light tooltipped" data-tooltip="Xóa">
-                    <i>xoá</i>
-                  </a>
-                  <a href="/webbanhang/Product/addToCart/<?php echo $product->id; ?>" 
-                     class="btn-small blue darken-2 waves-effect waves-light tooltipped" data-tooltip="Thêm vào giỏ hàng">
-                    <i>Thêm vào giỏ</i>
-                  </a>
-                </td>
-              </tr>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
-      </div>
-    <?php endif; ?>
-  </div>
-
-  <?php include 'app/views/shares/footer.php'; ?>
-
-  <!-- Materialize JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var elems = document.querySelectorAll('.tooltipped');
-      M.Tooltip.init(elems);
-    });
-  </script>
-</body>
-
-</html>
+<?php include 'app/views/shares/footer.php'; ?>
